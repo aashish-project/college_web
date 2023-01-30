@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{%block css%}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="/static/css/style.css">
+{%endblock%}
+{%block title%}Home{%endblock%}
+{%block navbar%}
+
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="/static/css/style_v1.css">
+<link rel="stylesheet" href="/static/css/style_v2.css">
+<section style="display: block;">
+    <div class="main_container">
+        <div id="search">
+            <div id="search_heading">Search</div>
+
+            {% comment %} {{branch_data = chapter_data.branch_data}} {% endcomment %}
+            
+            {% for br in branch_data %} 
+            {% if "branch" in br %}
+            {# do something with br #}
+            <a href="#" class="parent-ele">{{br.branch}} <i class="fas fa-angle-right  dropdown"></i></a>
+            <div class="child" id="{{br.branch}}">
+                <form method="get" class="form">
+                    {% for sub in br.subjects%}
+                    <button value="{{br.branch}}&{{sub}}" name="sub" class="link subject">{{sub}}</button>
+                    {% endfor %}
+                </form>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+
+        </div>
+        <div id="visible">
+            <div id="center_content">
+                <div class="container">
+                    {% for item in branch_data%}
+                    {% if item.topic %}
+                    <div class="topic-container">
+                        <div class="center_content_heading">
+                            <form method="get">
+                                <button value="{{item.topic.0}}" name="topic" class="link subject">
+                                    {{item.topic.0}}
+                                </button>
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="chapters-select-container" class="row">
+                <!-- <div id="blank-sp" style="width:20vw";>
+            
+                </div> -->
+                <div id="select-container">
+                    <div id="select-search-container">
+                        <div id="search-field">
+                            Search chapter</div>
+                        <div id="search-icon"></div>
+                    </div>
+                    <div id="select-items">
+            
+                    </div>
+                </div>
+                <div id="selected-container">
+                    <div id="selected-container-heading">Selected chapters</div>
+                    <div id="selected" class="selected-items">
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="right_scroll"></div> -->
+</div>
+        </div>
+        <!-- <div class="right_scroll"></div> -->
+    </div>
+    </div>
+</section>
+{%endblock%}
+{%block javascript%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="/static/js/main.js">
+    console.log("hello")
+</script>
+{%endblock%}

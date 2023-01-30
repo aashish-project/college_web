@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#bounce
+{
+  @apply animate-bounce text-green-900 font-semibold  bg-gradient-to-tr from-gray-500 to-gray-400 drop-shadow-lg
+}

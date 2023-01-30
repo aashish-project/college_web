@@ -1,0 +1,62 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{%block title%} {%endblock%}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style_a1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    {% tailwind_css %}
+    <style>
+      #loading-animation {
+        background: white url(/static/images/0_4Gzjgh9Y7Gu8KEtZ.gif) no-repeat center center;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+      }
+      #current-active{
+          border-bottom:3px solid #28a745
+      }
+    </style>
+      
+    {%block css%} {%endblock%}
+  </head>
+<body>
+    
+    <div id="loading-animation"></div>
+<header class="h-screen w-full bg-gray-200">
+<header class="h-auto w-full bg-gray-200 p-5">
+  <nav class="flex h-fit w-full sm:flex-grow items-center justify-around">
+    <span class="flex justify-center w-fit"><a href="/">DOTLEARN</a></span>
+    <span class="invisible h-auto w-96 align-middle sm:visible">
+      <ul class="hidden sm:flex justify-evenly">
+        <li class="hover:text-green-600" id="{% if request.path == '/' %}current-active{% endif %}"><a href="/">HOME</a></li>
+        <li class="hover:text-green-600" id="{% if request.path == '/practice'%}current-active{% endif %}"><a href="/practice">PRACTICE</a></li>
+        <li class="hover:text-green-600" id="{% if request.path == '/materail'%} current-active{% endif %}"><a href="/material">MATERIAL</a></li>
+        <li class="hover:text-green-600"id="{% if request.path == '/contact'%} current-active{% endif %}"  ><a href="/contact">CONTACT</a></li>
+      </ul>
+    </span>
+    <span>
+      <button class="rounded-lg border-2 border-green-500 bg-green-500 px-5 py-2 text-center text-white shadow-lg ease-in hover:border-green-700 hover:bg-green-700 hover:shadow-2xl sm:delay-150"><a href="/admin/">Login</a></button>
+    </span>
+    <span class="sm:hidden">
+      <span class="right-0 visible p-2">
+        <button id="butn_show">Y</button>
+      </span>
+    </span>
+  </nav>
+</header>
+    
+<nav class="h-fit justify-center bg-gray-200" id="under" style="display:none">
+  <ul class="flex flex-col">
+    <li class=" flex justify-center py-2 hover:text-green-600"><a href="/" class="px-96">HOME</a></li>
+    <li class=" flex justify-center py-2 hover:text-green-600"><a href="/practice" class="px-96">PRACTICE</a></li>
+    <li class=" flex justify-center py-2 hover:text-green-600"><a href="/material" class="px-96">MATERIAL</a></li>
+    <li class=" flex justify-center py-2 hover:text-green-600"><a href="/contact" class="px-96">CONTACT</a></li>
+  </ul>
+</nav>  

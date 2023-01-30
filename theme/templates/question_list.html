@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Home{% endblock%}
+{% block navbar%}
+
+{% endblock%}
+{% block body %}
+<ul>
+
+    {% for question in questions %}
+        {% for q in question%}
+        <li>{{q}}</li>
+        {% endfor%}
+    {% endfor%}
+</ul>
+{% endblock%}

@@ -1,0 +1,103 @@
+{% load static tailwind_tags %}
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{%block title%} {%endblock%}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    {% tailwind_css %}
+    <style>
+      #loading-animation {
+        background: white url(/static/images/0_4Gzjgh9Y7Gu8KEtZ.gif) no-repeat center center;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+      }
+      #current-active{
+          border-bottom:3px solid #28a745
+      }
+    </style>
+      
+    {%block css%} {%endblock%}
+  </head>
+<body>
+    
+    <div id="loading-animation"></div>
+<header class="h-screen w-full bg-gray-200">
+<header class="h-auto w-full bg-gray-200 p-5">
+  <nav class="flex h-fit w-full sm:flex-grow items-center justify-around">
+    <span class="flex justify-center w-fit"><a href="/">DOTLEARN</a></span>
+    <span class="invisible h-auto w-96 align-middle sm:visible">
+      <ul class="hidden sm:flex justify-evenly">
+        <li class="hover:text-green-600" id="{% if request.path == '/' or request.path == '/branch %}current-active{% endif %}"><a href="home">HOME</a></li>
+        <li class="hover:text-green-600" id="{% if request.path == '/practice'%}current-active{% endif %}"><a href="practice">PRACTICE</a></li>
+        <li class="hover:text-green-600" id="{% if request.path == '/materail'%} current-active{% endif %}"><a href="material">MATERIAL</a></li>
+        <li class="hover:text-green-600"id="{% if request.path == '/contact'%} current-active{% endif %}"  ><a href="contact">CONTACT</a></li>
+      </ul>
+    </span>
+    <span>
+      <button class="rounded-lg border-2 border-green-500 bg-green-500 px-5 py-2 text-center text-white shadow-lg ease-in hover:border-green-700 hover:bg-green-700 hover:shadow-2xl sm:delay-150"><a href="/admin/">Login</a></button>
+    </span>
+    <span class="sm:hidden">
+      <span class="right-0 visible p-2 sm:invisible">
+        <button onclick="document.getElementById ('under').style.display='flex';document.getElementById ('butn_hde').style.visibility='visible';this.style.visibility='hidden';" id="butn_show">Y</button>
+      </span>
+      <span class="right-0 p-2 invisible">
+        <button onclick="document.getElementById ('under').style='hidden';document.getElementById ('butn_show').style.visibility='visible';this.style.visibility='hidden';" id="butn_hde">X</button>
+      </span>
+    </span>
+  </nav>
+</header>
+    
+<nav class="h-fit justify-center hidden bg-gray-200" id="under">
+  <ul class="flex flex-col">
+    <li class="py-2 hover:text-green-600"><a href="home" class="px-96">HOME</a></li>
+    <li class="py-2 hover:text-green-600"><a href="practice" class="px-96">PRACTICE</a></li>
+    <li class="py-2 hover:text-green-600"><a href="material" class="px-96">MATERIAL</a></li>
+    <li class="py-2 hover:text-green-600"><a href="contact" class="px-96">CONTACT</a></li>
+  </ul>
+</nav>
+<div class="w-full h-4/5">
+  <div class="bg-gray-100 h-full w-full pt-2 flex">
+    <div id="side-bar" class="w-1/5 h-full flex flex-col p-2 text-center bg-gray-200 mb-3">
+    Selector
+    <div class="h-full pt-8 py-2">
+      {% for br in branch_data%}
+      <div id="branch" class="hover:text-green-500 pb-2" onclick="myFunction()"><a href="#" class="parent-ele link-1">{{br.branch}} <i class="fas fa-angle-right  dropdown"></i></a></div>
+      <div id="wantToHide" class="none flex-col">
+        {% for sub in br.subjects%}
+        {%if sub%}
+        <div class="hover:text-green-500"><a href="/branch/{{br.branch}}/subject/{{sub}}/"class="link subject">{{sub}}</a></div> 
+<!--         end for loop -->   
+        {%endif%}
+        {% endfor %}
+      </div>
+      {%endfor%}
+    </div>
+    </div>
+  <div id="main-container" class="h-full w-full">
+      <div id="items" class="grid grid-cols-3 justify-items-center  ">
+        {%for chap in branch_data.chapter%}
+        <div class="bg-gradient-to-tr from-gray-300 to-gray-400  w-4/5 h-4/6 flex justify-center items-center hover:text-green-800 rounded-lg p-3 mt-5" onclick="id='bounce'" >
+            <div class="p-5 cursor-pointer ">chap</div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  <div id="selected"></div>
+</div>
+
+<script>
+  window.onload = function() {
+    // Hide the loading animation
+    document.getElementById("loading-animation").style.display = "none";
+  }
+  
+</script>
+{%block javascript%} {%endblock%}
+</html>
