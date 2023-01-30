@@ -1,0 +1,33 @@
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8,0,1,1)
+    }
+  
+    50% {
+      transform: none;
+      animation-timing-function: cubic-bezier(0,0,0.2,1)
+    }
+  }
+  
+  .bounce {
+    animation: bounce 1s infinite;
+    background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+    --tw-gradient-from: #9ca3af;
+    --tw-gradient-to: rgb(156 163 175 / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #d1d5db;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
+    --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+  }
+.transition{
+    background-color: #ffffff63;
+    text-align: center;
+    transition: 0.2s linear;
+}
+.rotate{
+    transform: rotate(90deg);
+}
